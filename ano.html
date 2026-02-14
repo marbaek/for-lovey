@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clickbait Letter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="envelope-wrapper">
+            <div class="envelope">
+                <div class="letter">
+                    <div class="text">
+                        <strong>Dear Justene.</strong>
+                        <p>
+                            I know we've only known each other for a short time, but I want you to know that I've liked you since the day we first met. Initially, I doubted our compatibility, but your energy captivated me, and I realized you're the one for me.
+                        </p>
+                        <p>
+                            As I do this program, I'm sending this message to show you that my feelings are genuine, and I'm serious about you. So I hope you feel the same way as I do l.
+                        </p>
+                        <div style="text-align: center;">
+                            <p>-Marvic</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="heart"></div>
+        </div>
+    </div>
+    <script>
+        const envelope = document.querySelector('.envelope-wrapper');
+        envelope.addEventListener('click', () => {
+            envelope.classList.toggle('flap');
+        });
+    </script>
+</body>
+</html>
