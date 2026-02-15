@@ -115,10 +115,14 @@
             transform: rotateX(180deg);
             z-index: 0;
         }
-        .pull > .envelope > .letter {
-            bottom: 150px;
-            transform: scale(1.5);
+        .flap > .envelope > .letter {
+            transform: scale(1.2);
             transition-delay: 0.5s;
+        }
+        .pull > .envelope > .letter {
+            bottom: 180px;
+            transform: scale(1.8);
+            transition-delay: 0s;
         }
         .hearts-bg {
             position: fixed;
@@ -183,7 +187,7 @@
         let isOpen = false;
         let isPulled = false;
         
-        // Click envelope to open flap
+        // Click envelope/flap to open and scale letter
         envelope.addEventListener('click', (e) => {
             if (!e.target.closest('.letter') && !isOpen) {
                 envelopeWrapper.classList.add('flap');
@@ -191,10 +195,11 @@
             }
         });
         
-        // Click letter to pull it out (only works after flap is open)
+        // Click letter to pull it out fully
         letter.addEventListener('click', (e) => {
             e.stopPropagation();
             if (isOpen && !isPulled) {
+                envelopeWrapper.classList.remove('flap');
                 envelopeWrapper.classList.add('pull');
                 isPulled = true;
             }
