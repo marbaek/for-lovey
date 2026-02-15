@@ -116,17 +116,17 @@
             z-index: 0;
         }
         .envelope-wrapper.flap > .envelope > .letter {
-            bottom: 30px;
-            transform: scale(1.15);
-            transition-delay: 0.8s;
+            bottom: 100px;
+            transform: scale(1.5);
+            transition-delay: 1s;
         }
-        .envelope-wrapper.pull > .envelope::before {
+        .envelope-wrapper.flap.pull > .envelope::before {
             transform: rotateX(180deg);
             z-index: 0;
         }
-        .envelope-wrapper.pull > .envelope > .letter {
-            bottom: 220px;
-            transform: scale(2.2);
+        .envelope-wrapper.flap.pull > .envelope > .letter {
+            bottom: 280px;
+            transform: scale(2.5);
             transition-delay: 0s;
         }
         .hearts-bg {
