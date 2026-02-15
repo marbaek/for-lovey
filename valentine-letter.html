@@ -64,6 +64,7 @@
             padding: 18px 12px 60px 12px;
             overflow-y: auto;
             cursor: default;
+            position: relative;
         }
         .letter::-webkit-scrollbar {
             width: 4px;
@@ -116,19 +117,18 @@
         }
         .toggle-btn {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 5px;
+            right: 5px;
             background: #ff6b6b;
             color: white;
             border: none;
-            padding: 8px 12px;
+            padding: 6px 10px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 11px;
+            font-size: 9px;
             font-family: 'Georgia', serif;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
-            z-index: 30;
         }
         .toggle-btn:hover {
             background: #e74c3c;
@@ -199,8 +199,8 @@
     <div class="container">
         <div class="envelope-wrapper">
             <div class="envelope">
-                <button class="toggle-btn" id="toggleBtn">Pull Out</button>
                 <div class="letter">
+                    <button class="toggle-btn" id="toggleBtn">Pull Out</button>
                     <div class="text">
                         <p class="greeting">My Dearest Love,</p>
                         <p>I hope this letter finds you in good health and high spirits. On this special day of Valentine's, I feel compelled to express the depth of my affection and admiration for you.</p>
