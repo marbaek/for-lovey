@@ -162,6 +162,63 @@
             object-fit: cover;
             display: block;
         }
+        @media (max-width: 768px) {
+            .envelope-wrapper {
+                width: 90vw !important;
+                height: calc(90vw * 0.583) !important;
+                max-width: 400px !important;
+                max-height: 233px !important;
+            }
+            .envelope {
+                width: 90vw !important;
+                height: calc(90vw * 0.583) !important;
+                max-width: 400px !important;
+                max-height: 233px !important;
+            }
+            .envelope::before {
+                border-top-width: calc(90vw * 0.333);
+                border-right-width: calc(90vw * 0.5);
+                border-left-width: calc(90vw * 0.5);
+                max-border-top-width: 133px;
+                max-border-right-width: 200px;
+                max-border-left-width: 200px;
+            }
+            .envelope::after {
+                border-top-width: calc(90vw * 0.333);
+                border-right-width: calc(90vw * 0.5);
+                border-bottom-width: calc(90vw * 0.25);
+                border-left-width: calc(90vw * 0.5);
+                max-border-top-width: 133px;
+                max-border-right-width: 200px;
+                max-border-bottom-width: 100px;
+                max-border-left-width: 200px;
+            }
+            .letter {
+                font-size: 8px !important;
+                padding: 12px 8px 40px 8px !important;
+            }
+            .toggle-btn {
+                font-size: 7px !important;
+                padding: 4px 8px !important;
+            }
+            .polaroid {
+                margin-left: 10px;
+                padding: 6px;
+                padding-bottom: 15px;
+            }
+            .polaroid img {
+                width: 80px;
+                height: 80px;
+            }
+            .rose, .cherry {
+                width: 40px;
+                height: 40px;
+            }
+            .babysbreath {
+                width: 30px;
+                height: 30px;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen bg-red-300 flex items-center justify-center font-serif relative overflow-hidden">
