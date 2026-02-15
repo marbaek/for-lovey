@@ -66,6 +66,19 @@
         .floating-heart:nth-child(3) { left: 50%; animation-delay: 4s; }
         .floating-heart:nth-child(4) { left: 70%; animation-delay: 1s; }
         .floating-heart:nth-child(5) { left: 90%; animation-delay: 3s; }
+        .letter::-webkit-scrollbar {
+            width: 4px;
+        }
+        .letter::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .letter::-webkit-scrollbar-thumb {
+            background: rgba(239, 68, 68, 0.2);
+            border-radius: 2px;
+        }
+        .letter::-webkit-scrollbar-thumb:hover {
+            background: rgba(239, 68, 68, 0.3);
+        }
     </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-red-400 via-red-600 to-red-900 flex items-center justify-center font-serif">
@@ -83,7 +96,7 @@
             <div class="envelope relative w-[600px] h-[350px] cursor-pointer">
                 <div class="letter absolute left-[18%] bottom-0 w-[65%] h-[82%] bg-white flex items-center justify-center transition-all duration-1000 ease-in-out shadow-[0_0_5px_rgba(0,0,0,0.2)] p-[18px_12px_60px_12px] overflow-y-auto cursor-default">
                     <button class="toggle-btn absolute top-[5px] right-[5px] bg-red-500 text-white border-none px-[10px] py-[6px] rounded-md cursor-pointer text-[9px] shadow-[0_2px_5px_rgba(0,0,0,0.2)] transition-all duration-300 hover:bg-red-600 hover:scale-105" id="toggleBtn">Pull Out</button>
-                    <div class="text font-['Brush_Script_MT',cursive] text-gray-700 text-center text-[10px] leading-relaxed w-full mt-5">
+                    <div class="text font-['Brush_Script_MT',cursive] text-gray-700 text-left text-[10px] leading-relaxed w-full mt-5">
                         <p class="italic mb-2 font-bold">My Dearest Love,</p>
                         <p class="mb-2">I hope this letter finds you in good health and high spirits. On this special day of Valentine's, I feel compelled to express the depth of my affection and admiration for you.</p>
                         <p class="mb-2">It is with great sincerity that I write to inform you of the profound impact you have had upon my life. Your presence brings light to my darkest days, and your companionship fills my heart with immeasurable joy.</p>
