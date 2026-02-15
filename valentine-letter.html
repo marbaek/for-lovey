@@ -111,22 +111,22 @@
             margin-top: 12px;
             margin-bottom: 20px;
         }
-        .flap > .envelope::before {
+        .envelope-wrapper.flap > .envelope::before {
             transform: rotateX(180deg);
             z-index: 0;
         }
-        .flap > .envelope > .letter {
-            bottom: 20px;
-            transform: scale(1.1);
+        .envelope-wrapper.flap > .envelope > .letter {
+            bottom: 30px;
+            transform: scale(1.15);
             transition-delay: 0.8s;
         }
-        .pull > .envelope::before {
+        .envelope-wrapper.pull > .envelope::before {
             transform: rotateX(180deg);
             z-index: 0;
         }
-        .pull > .envelope > .letter {
-            bottom: 200px;
-            transform: scale(2);
+        .envelope-wrapper.pull > .envelope > .letter {
+            bottom: 220px;
+            transform: scale(2.2);
             transition-delay: 0s;
         }
         .hearts-bg {
