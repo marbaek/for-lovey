@@ -117,7 +117,7 @@
         }
         .envelope-wrapper.flap > .envelope > .letter {
             bottom: 100px;
-            transform: scale(1.5);
+            transform: scale(1.5) translateY(0);
             transition-delay: 1s;
         }
         .envelope-wrapper.flap.pull > .envelope::before {
@@ -125,8 +125,8 @@
             z-index: 0;
         }
         .envelope-wrapper.flap.pull > .envelope > .letter {
-            bottom: 400px;
-            transform: scale(2.8);
+            bottom: 100px;
+            transform: scale(2) translateY(-250px);
             transition-delay: 0s;
         }
         .hearts-bg {
