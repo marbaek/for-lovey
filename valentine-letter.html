@@ -33,22 +33,24 @@
         .envelope-wrapper.flap > .envelope > .letter {
             transform: translateY(-100px) scale(1.5);
             transition-delay: 1s;
+            max-height: 82%;
         }
         .envelope-wrapper.flap.pull > .envelope::before {
             transform: rotateX(180deg);
             z-index: 0;
         }
         .envelope-wrapper.flap.pull > .envelope > .letter {
-            transform: translateY(50px) scale(1.5);
+            transform: translateY(45px) scale(1.5);
             transition-delay: 0s;
             z-index: 25;
-            animation: letterPop 0.5s ease-out;
             max-height: none !important;
         }
-        @keyframes letterPop {
-            0% { transform: translateY(50px) scale(1.5); }
-            50% { transform: translateY(50px) scale(1.7); }
-            100% { transform: translateY(50px) scale(1.5); }
+        .letter.slide-down {
+            animation: slideDown 1s ease-in-out forwards;
+        }
+        @keyframes slideDown {
+            0% { transform: translateY(-300px) scale(1.5); }
+            100% { transform: translateY(0) scale(1); }
         }
         .letter::-webkit-scrollbar {
             width: 4px;
@@ -311,6 +313,7 @@
     <script>
         const envelopeWrapper = document.querySelector('.envelope-wrapper');
         const envelope = document.querySelector('.envelope');
+        const letter = document.querySelector('.letter');
         const toggleBtn = document.getElementById('toggleBtn');
         let isOpen = false;
         let isPulled = false;
@@ -321,6 +324,7 @@
                 isOpen = !isOpen;
                 if (!isOpen) {
                     envelopeWrapper.classList.remove('pull');
+                    letter.classList.remove('slide-down');
                     toggleBtn.textContent = 'Put Out';
                     isPulled = false;
                 }
@@ -331,9 +335,11 @@
             e.stopPropagation();
             if (isOpen) {
                 if (isPulled) {
+                    letter.classList.add('slide-down');
                     envelopeWrapper.classList.remove('pull');
                     toggleBtn.textContent = 'Put Out';
                     isPulled = false;
+                    setTimeout(() => letter.classList.remove('slide-down'), 1000);
                 } else {
                     envelopeWrapper.classList.add('pull');
                     toggleBtn.textContent = 'Put In';
