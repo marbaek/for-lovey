@@ -192,9 +192,14 @@
         let isOpen = false;
         let isPulled = false;
         
+        console.log('Script loaded');
+        console.log('Elements:', { envelopeWrapper, envelope, letter });
+        
         // Click envelope/flap to open
         envelope.addEventListener('click', (e) => {
+            console.log('Envelope clicked', e.target);
             if (!e.target.closest('.letter') && !isOpen) {
+                console.log('Opening flap');
                 envelopeWrapper.classList.add('flap');
                 isOpen = true;
             }
@@ -202,10 +207,14 @@
         
         // Click letter to pull it out fully
         letter.addEventListener('click', (e) => {
+            console.log('Letter clicked', { isOpen, isPulled });
             e.stopPropagation();
             if (isOpen && !isPulled) {
+                console.log('Pulling letter out');
                 envelopeWrapper.classList.add('pull');
                 isPulled = true;
+            } else {
+                console.log('Cannot pull - isOpen:', isOpen, 'isPulled:', isPulled);
             }
         });
     </script>
