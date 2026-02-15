@@ -140,8 +140,7 @@
             z-index: 0;
         }
         .envelope-wrapper.flap > .envelope > .letter {
-            bottom: 100px;
-            transform: scale(1.5) translateY(0);
+            transform: translateY(-100px) scale(1.5);
             transition-delay: 1s;
         }
         .envelope-wrapper.flap.pull > .envelope::before {
@@ -149,16 +148,15 @@
             z-index: 0;
         }
         .envelope-wrapper.flap.pull > .envelope > .letter {
-            bottom: 100px;
-            transform: scale(1.5);
+            transform: translateY(-100px) scale(1.5);
             transition-delay: 0s;
             z-index: 25;
             animation: letterPop 0.5s ease-out;
         }
         @keyframes letterPop {
-            0% { transform: scale(1.5); }
-            50% { transform: scale(1.7); }
-            100% { transform: scale(1.5); }
+            0% { transform: translateY(-100px) scale(1.5); }
+            50% { transform: translateY(-100px) scale(1.7); }
+            100% { transform: translateY(-100px) scale(1.5); }
         }
         .hearts-bg {
             position: fixed;
