@@ -4,252 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Valentine's Day ❤️</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #ff6b6b 0%, #c92a2a 50%, #8b0000 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .container {
-            height: 100vh;
-            display: grid;
-            place-items: center;
-        }
-        .envelope-wrapper {
-            background: #ffcccb;
-            box-shadow: 0 0 40px rgba(0,0,0,0.3);
-            width: 600px;
-            height: 350px;
-            position: relative;
-            overflow: visible;
-        }
-        .envelope {
-            position: relative;
-            width: 600px;
-            height: 350px;
-            cursor: pointer;
-        }
-        .envelope::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            z-index: 2;
-            border-top: 200px solid #ffb3ba;
-            border-right: 300px solid transparent;
-            border-left: 300px solid transparent;
-            transform-origin: top;
-            transition: all 0.5s ease-in-out 0.7s;
-        }
-        .envelope::after {
-            content: "";
-            position: absolute;
-            z-index: 2;
-            border-top: 200px solid transparent;
-            border-right: 300px solid #ffcccb;
-            border-bottom: 150px solid #ffcccb;
-            border-left: 300px solid #ffcccb;
-        }
-        .letter {
-            position: absolute;
-            left: 18%;
-            bottom: 0;
-            width: 65%;
-            height: 82%;
-            background: #fff;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            transition: all 1s ease-in-out;
-            box-shadow: 0 0 5px rgba(0,0,0,0.2);
-            padding: 18px 12px 60px 12px;
-            overflow-y: auto;
-            cursor: default;
-            position: relative;
-        }
-        .letter::-webkit-scrollbar {
-            width: 4px;
-        }
-        .letter::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .letter::-webkit-scrollbar-thumb {
-            background: rgba(255, 107, 107, 0.3);
-            border-radius: 2px;
-        }
-        .letter::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 107, 107, 0.5);
-        }
-        .text {
-            font-family: 'Brush Script MT', cursive;
-            color: #444;
-            text-align: left;
-            font-size: 10px;
-            line-height: 1.6;
-            width: 100%;
-            margin-top: 20px;
-        }
-        .text h1 {
-            color: #e74c3c;
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 14px;
-            font-family: 'Brush Script MT', cursive;
-        }
-        .text .heart-emoji {
-            color: #e74c3c;
-            font-size: 24px;
-            text-align: center;
-            display: block;
-            margin-bottom: 8px;
-        }
-        .text .greeting {
-            font-style: italic;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-        .text p {
-            margin-bottom: 8px;
-        }
-        .text .signature {
-            text-align: right;
-            font-style: italic;
-            margin-top: 12px;
-            margin-bottom: 20px;
-        }
-        .toggle-btn {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            padding: 6px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 9px;
-            font-family: 'Georgia', serif;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-        }
-        .toggle-btn:hover {
-            background: #e74c3c;
-            transform: scale(1.05);
-        }
-        .envelope-wrapper.flap > .envelope::before {
-            transform: rotateX(180deg);
-            z-index: 0;
-        }
-        .envelope-wrapper.flap > .envelope > .letter {
-            transform: translateY(-100px) scale(1.5);
-            transition-delay: 1s;
-        }
-        .envelope-wrapper.flap.pull > .envelope::before {
-            transform: rotateX(180deg);
-            z-index: 0;
-        }
-        .envelope-wrapper.flap.pull > .envelope > .letter {
-            transform: translateY(-100px) scale(1.5);
-            transition-delay: 0s;
-            z-index: 25;
-            animation: letterPop 0.5s ease-out;
-        }
-        @keyframes letterPop {
-            0% { transform: translateY(-100px) scale(1.5); }
-            50% { transform: translateY(-100px) scale(1.7); }
-            100% { transform: translateY(-100px) scale(1.5); }
-        }
-        .hearts-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-        .floating-heart {
-            position: absolute;
-            font-size: 20px;
-            opacity: 0;
-            animation: float 6s ease-in infinite;
-        }
         @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
-            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
         }
-        .floating-heart:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .floating-heart:nth-child(2) { left: 30%; animation-delay: 2s; }
-        .floating-heart:nth-child(3) { left: 50%; animation-delay: 4s; }
-        .floating-heart:nth-child(4) { left: 70%; animation-delay: 1s; }
-        .floating-heart:nth-child(5) { left: 90%; animation-delay: 3s; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+        }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-fadeIn { animation: fadeIn 0.8s ease-out forwards; }
+        .animate-heartbeat { animation: heartbeat 1.5s ease-in-out infinite; }
     </style>
 </head>
-<body>
-    <div class="hearts-bg">
-        <div class="floating-heart">❤️</div>
-        <div class="floating-heart">💕</div>
-        <div class="floating-heart">💖</div>
-        <div class="floating-heart">❤️</div>
-        <div class="floating-heart">💕</div>
+<body class="min-h-screen bg-gradient-to-br from-pink-400 via-red-400 to-rose-600 flex items-center justify-center p-4">
+    
+    <!-- Floating Hearts Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-10 left-10 text-4xl opacity-30 animate-float">💕</div>
+        <div class="absolute top-32 right-20 text-3xl opacity-20 animate-float" style="animation-delay: 1s;">❤️</div>
+        <div class="absolute bottom-20 left-1/4 text-5xl opacity-25 animate-float" style="animation-delay: 2s;">💖</div>
+        <div class="absolute bottom-40 right-1/3 text-3xl opacity-30 animate-float" style="animation-delay: 1.5s;">💗</div>
     </div>
 
-    <div class="container">
-        <div class="envelope-wrapper">
-            <div class="envelope">
-                <div class="letter">
-                    <button class="toggle-btn" id="toggleBtn">Pull Out</button>
-                    <div class="text">
-                        <p class="greeting">My Dearest Love,</p>
-                        <p>I hope this letter finds you in good health and high spirits. On this special day of Valentine's, I feel compelled to express the depth of my affection and admiration for you.</p>
-                        <p>It is with great sincerity that I write to inform you of the profound impact you have had upon my life. Your presence brings light to my darkest days, and your companionship fills my heart with immeasurable joy.</p>
-                        <p>I find myself continually grateful for the moments we share together. Your smile remains my greatest treasure, your laughter my most cherished melody, and your happiness my foremost concern.</p>
-                        <p>Please accept this humble expression of my devotion. You have transformed the ordinary into the extraordinary, and for that, I am eternally grateful.</p>
-                        <div class="signature">
-                            <p>With deepest affection and warmest regards,<br><strong>Marvic</strong></p>
-                        </div>
-                    </div>
+    <!-- Main Card -->
+    <div class="relative z-10 max-w-2xl w-full animate-fadeIn">
+        <!-- Card Container -->
+        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+            
+            <!-- Header Section -->
+            <div class="bg-gradient-to-r from-pink-500 to-rose-500 p-8 text-center relative overflow-hidden">
+                <div class="absolute inset-0 opacity-20">
+                    <div class="absolute top-0 left-0 w-32 h-32 bg-white rounded-full -translate-x-16 -translate-y-16"></div>
+                    <div class="absolute bottom-0 right-0 w-40 h-40 bg-white rounded-full translate-x-20 translate-y-20"></div>
+                </div>
+                <div class="relative">
+                    <h1 class="text-5xl font-bold text-white mb-2 animate-heartbeat">❤️</h1>
+                    <h2 class="text-3xl font-bold text-white mb-1">Happy Valentine's Day</h2>
+                    <p class="text-pink-100 text-sm">A Letter From My Heart</p>
+                </div>
+            </div>
+
+            <!-- Letter Content -->
+            <div class="p-8 md:p-12 space-y-4 text-gray-700 leading-relaxed">
+                <p class="text-xl font-semibold text-rose-600 italic">My Dearest Love,</p>
+                
+                <p class="text-base">I hope this letter finds you in good health and high spirits. On this special day of Valentine's, I feel compelled to express the depth of my affection and admiration for you.</p>
+                
+                <p class="text-base">It is with great sincerity that I write to inform you of the profound impact you have had upon my life. Your presence brings light to my darkest days, and your companionship fills my heart with immeasurable joy.</p>
+                
+                <p class="text-base">I find myself continually grateful for the moments we share together. Your smile remains my greatest treasure, your laughter my most cherished melody, and your happiness my foremost concern.</p>
+                
+                <p class="text-base">Please accept this humble expression of my devotion. You have transformed the ordinary into the extraordinary, and for that, I am eternally grateful.</p>
+                
+                <div class="pt-6 text-right">
+                    <p class="text-base italic text-gray-600">With deepest affection and warmest regards,</p>
+                    <p class="text-xl font-bold text-rose-600 mt-2">Marvic</p>
+                </div>
+            </div>
+
+            <!-- Footer Decoration -->
+            <div class="bg-gradient-to-r from-pink-50 to-rose-50 p-6 text-center border-t border-pink-100">
+                <div class="flex justify-center gap-3 text-2xl">
+                    <span class="animate-heartbeat">💕</span>
+                    <span class="animate-heartbeat" style="animation-delay: 0.2s;">💖</span>
+                    <span class="animate-heartbeat" style="animation-delay: 0.4s;">💗</span>
+                    <span class="animate-heartbeat" style="animation-delay: 0.6s;">💕</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        const envelopeWrapper = document.querySelector('.envelope-wrapper');
-        const envelope = document.querySelector('.envelope');
-        const letter = document.querySelector('.letter');
-        const toggleBtn = document.getElementById('toggleBtn');
-        let isOpen = false;
-        let isPulled = false;
-        
-        // Click envelope/flap to open
-        envelope.addEventListener('click', (e) => {
-            if (!e.target.closest('.letter') && !e.target.closest('.toggle-btn') && !isOpen) {
-                envelopeWrapper.classList.add('flap');
-                isOpen = true;
-            }
-        });
-        
-        // Toggle button to pull in/out
-        toggleBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (isOpen) {
-                if (isPulled) {
-                    envelopeWrapper.classList.remove('pull');
-                    toggleBtn.textContent = 'Pull Out';
-                    isPulled = false;
-                } else {
-                    envelopeWrapper.classList.add('pull');
-                    toggleBtn.textContent = 'Pull In';
-                    isPulled = true;
-                }
-            }
-        });
-    </script>
 </body>
 </html>
