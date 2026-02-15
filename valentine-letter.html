@@ -39,15 +39,16 @@
             z-index: 0;
         }
         .envelope-wrapper.flap.pull > .envelope > .letter {
-            transform: translateY(-100px) scale(1.5);
+            transform: translateY(50px) scale(1.5);
             transition-delay: 0s;
             z-index: 25;
             animation: letterPop 0.5s ease-out;
+            max-height: none !important;
         }
         @keyframes letterPop {
-            0% { transform: translateY(-100px) scale(1.5); }
-            50% { transform: translateY(-100px) scale(1.7); }
-            100% { transform: translateY(-100px) scale(1.5); }
+            0% { transform: translateY(50px) scale(1.5); }
+            50% { transform: translateY(50px) scale(1.7); }
+            100% { transform: translateY(50px) scale(1.5); }
         }
         .letter::-webkit-scrollbar {
             width: 4px;
@@ -286,8 +287,8 @@
     <div class="h-screen grid place-items-center relative z-[2]">
         <div class="envelope-wrapper bg-[#FFB6B6] shadow-[0_0_40px_rgba(0,0,0,0.3)] w-[600px] h-[350px] relative overflow-visible">
             <div class="envelope relative w-[600px] h-[350px] cursor-pointer">
-                <div class="letter absolute left-[18%] bottom-0 w-[65%] h-[82%] bg-[#f4e8d0] flex items-start justify-center transition-all duration-1000 ease-in-out shadow-[0_0_5px_rgba(0,0,0,0.2)] p-[18px_12px_60px_12px] overflow-y-auto cursor-default">
-                    <button class="toggle-btn absolute top-[5px] right-[5px] bg-[#f4e8d0]/80 text-gray-600 border border-gray-300 px-[10px] py-[6px] rounded-md cursor-pointer text-[9px] shadow-sm transition-all duration-300 hover:bg-[#f4e8d0] hover:text-gray-800" id="toggleBtn">Pull Out</button>
+                <div class="letter absolute left-[18%] bottom-0 w-[65%] h-auto min-h-[82%] max-h-[82%] bg-[#f4e8d0] flex items-start justify-center transition-all duration-1000 ease-in-out shadow-[0_0_5px_rgba(0,0,0,0.2)] p-[18px_12px_60px_12px] overflow-y-auto cursor-default">
+                    <button class="toggle-btn absolute top-[5px] right-[5px] bg-[#f4e8d0]/80 text-gray-600 border border-gray-300 px-[10px] py-[6px] rounded-md cursor-pointer text-[9px] shadow-sm transition-all duration-300 hover:bg-[#f4e8d0] hover:text-gray-800" id="toggleBtn">Put Out</button>
                     <div class="text font-['Brush_Script_MT',cursive] text-gray-700 text-left text-[10px] leading-relaxed w-full mt-2">
                         <p class="italic mb-2 font-bold">My Love,</p>
                         <p class="mb-2">I hope this letter finds you in good health and high spirits. On this special day of Valentine's, I feel compelled to express the depth of my affection and admiration for you.</p>
@@ -320,7 +321,7 @@
                 isOpen = !isOpen;
                 if (!isOpen) {
                     envelopeWrapper.classList.remove('pull');
-                    toggleBtn.textContent = 'Pull Out';
+                    toggleBtn.textContent = 'Put Out';
                     isPulled = false;
                 }
             }
@@ -331,11 +332,11 @@
             if (isOpen) {
                 if (isPulled) {
                     envelopeWrapper.classList.remove('pull');
-                    toggleBtn.textContent = 'Pull Out';
+                    toggleBtn.textContent = 'Put Out';
                     isPulled = false;
                 } else {
                     envelopeWrapper.classList.add('pull');
-                    toggleBtn.textContent = 'Pull In';
+                    toggleBtn.textContent = 'Put In';
                     isPulled = true;
                 }
             }
