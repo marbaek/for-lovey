@@ -14,25 +14,91 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            width: 500px;
+            height: 400px;
+            cursor: pointer;
+        }
+        .envelope {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+        }
+        .envelope-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #f4e4d7;
+            border: 3px solid #d4a574;
+            clip-path: polygon(0 0, 50% 60%, 100% 0, 100% 100%, 0 100%);
+        }
+        .envelope-flap {
+            position: absolute;
+            width: 100%;
+            height: 60%;
+            background: #f4e4d7;
+            border: 3px solid #d4a574;
+            border-bottom: none;
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            transform-origin: top center;
+            transition: transform 1s ease;
+            z-index: 20;
+        }
+        .container.open .envelope-flap {
+            transform: rotateX(180deg);
         }
         .letter {
+            position: absolute;
+            width: 90%;
+            height: 500px;
             background: #fff;
-            max-width: 600px;
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            position: relative;
-            animation: fadeIn 1s ease-in;
+            left: 5%;
+            top: 100%;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            transition: top 1.5s ease;
+            overflow-y: auto;
+            z-index: 5;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .container.open .letter {
+            top: -20%;
+        }
+        .bouquet {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            opacity: 0;
+            transition: all 1.5s ease;
+            z-index: 15;
+        }
+        .container.open .bouquet {
+            bottom: 60%;
+            opacity: 1;
+        }
+        .flower {
+            display: inline-block;
+            animation: sway 2s ease-in-out infinite;
+        }
+        .flower:nth-child(1) { animation-delay: 0s; }
+        .flower:nth-child(2) { animation-delay: 0.2s; }
+        .flower:nth-child(3) { animation-delay: 0.4s; }
+        .flower:nth-child(4) { animation-delay: 0.6s; }
+        .flower:nth-child(5) { animation-delay: 0.8s; }
+        @keyframes sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
         }
         .heart {
             color: #e74c3c;
-            font-size: 60px;
+            font-size: 50px;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             animation: heartbeat 1.5s infinite;
         }
         @keyframes heartbeat {
@@ -42,61 +108,120 @@
         h1 {
             color: #e74c3c;
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 32px;
+            margin-bottom: 20px;
+            font-size: 28px;
         }
         .greeting {
-            font-size: 20px;
+            font-size: 18px;
             color: #333;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-style: italic;
         }
         p {
             color: #555;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 14px;
         }
         .signature {
             text-align: right;
-            margin-top: 40px;
+            margin-top: 30px;
             font-style: italic;
             color: #333;
         }
-        .decoration {
+        .click-hint {
             position: absolute;
-            font-size: 30px;
-            opacity: 0.2;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 18px;
+            animation: bounce 2s infinite;
+            z-index: 30;
         }
-        .decoration:nth-child(1) { top: 20px; left: 20px; }
-        .decoration:nth-child(2) { top: 20px; right: 20px; }
-        .decoration:nth-child(3) { bottom: 20px; left: 20px; }
-        .decoration:nth-child(4) { bottom: 20px; right: 20px; }
+        .container.open .click-hint {
+            display: none;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: float 6s ease-in infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        .floating-heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .floating-heart:nth-child(2) { left: 30%; animation-delay: 2s; }
+        .floating-heart:nth-child(3) { left: 50%; animation-delay: 4s; }
+        .floating-heart:nth-child(4) { left: 70%; animation-delay: 1s; }
+        .floating-heart:nth-child(5) { left: 90%; animation-delay: 3s; }
     </style>
 </head>
 <body>
-    <div class="letter">
-        <div class="decoration">❤️</div>
-        <div class="decoration">❤️</div>
-        <div class="decoration">❤️</div>
-        <div class="decoration">❤️</div>
+    <div class="hearts-bg">
+        <div class="floating-heart">❤️</div>
+        <div class="floating-heart">💕</div>
+        <div class="floating-heart">💖</div>
+        <div class="floating-heart">❤️</div>
+        <div class="floating-heart">💕</div>
+    </div>
+
+    <div class="container" onclick="this.classList.toggle('open')">
+        <div class="click-hint">✨ Click to Open ✨</div>
         
-        <div class="heart">❤️</div>
-        <h1>Happy Valentine's Day</h1>
+        <div class="bouquet">
+            <span class="flower">🌹</span>
+            <span class="flower">🌺</span>
+            <span class="flower">🌷</span>
+            <span class="flower">🌸</span>
+            <span class="flower">🌻</span>
+        </div>
         
-        <p class="greeting">My Dearest Love,</p>
+        <div class="envelope">
+            <div class="envelope-back"></div>
+            <div class="envelope-flap"></div>
+        </div>
         
-        <p>On this Valentine's Day, I want you to know that you are the light that brightens my darkest days and the warmth that fills my heart with joy.</p>
-        
-        <p>Every moment with you feels like a beautiful dream I never want to wake from. Your smile is my favorite sight, your laughter is my favorite sound, and your happiness is my greatest wish.</p>
-        
-        <p>You make ordinary days extraordinary simply by being in them. With you, I've discovered what it truly means to love and be loved.</p>
-        
-        <p>Thank you for being my partner, my best friend, and my everything. I am so grateful for every second we share together.</p>
-        
-        <div class="signature">
-            <p>Forever yours,<br><strong>[Your Name]</strong></p>
+        <div class="letter">
+            <div class="heart">❤️</div>
+            <h1>Happy Valentine's Day</h1>
+            
+            <p class="greeting">My Dearest Love,</p>
+            
+            <p>On this Valentine's Day, I want you to know that you are the light that brightens my darkest days and the warmth that fills my heart with joy.</p>
+            
+            <p>Every moment with you feels like a beautiful dream I never want to wake from. Your smile is my favorite sight, your laughter is my favorite sound, and your happiness is my greatest wish.</p>
+            
+            <p>You make ordinary days extraordinary simply by being in them. With you, I've discovered what it truly means to love and be loved.</p>
+            
+            <p>Thank you for being my partner, my best friend, and my everything. I am so grateful for every second we share together.</p>
+            
+            <div class="signature">
+                <p>Forever yours,<br><strong>[Your Name]</strong></p>
+            </div>
         </div>
     </div>
+
+    <script>
+        const container = document.querySelector('.container');
+        setTimeout(() => container.classList.add('open'), 1000);
+    </script>
 </body>
 </html>
