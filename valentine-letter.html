@@ -63,7 +63,7 @@
             box-shadow: 0 0 5px rgba(0,0,0,0.2);
             padding: 18px 12px 60px 12px;
             overflow-y: auto;
-            cursor: pointer;
+            cursor: default;
         }
         .letter::-webkit-scrollbar {
             width: 4px;
@@ -113,6 +113,26 @@
             font-style: italic;
             margin-top: 12px;
             margin-bottom: 20px;
+        }
+        .toggle-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 11px;
+            font-family: 'Georgia', serif;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 30;
+        }
+        .toggle-btn:hover {
+            background: #e74c3c;
+            transform: scale(1.05);
         }
         .envelope-wrapper.flap > .envelope::before {
             transform: rotateX(180deg);
@@ -179,6 +199,7 @@
     <div class="container">
         <div class="envelope-wrapper">
             <div class="envelope">
+                <button class="toggle-btn" id="toggleBtn">Pull Out</button>
                 <div class="letter">
                     <div class="text">
                         <p class="greeting">My Dearest Love,</p>
@@ -199,32 +220,31 @@
         const envelopeWrapper = document.querySelector('.envelope-wrapper');
         const envelope = document.querySelector('.envelope');
         const letter = document.querySelector('.letter');
+        const toggleBtn = document.getElementById('toggleBtn');
         let isOpen = false;
         let isPulled = false;
         
-        console.log('Script loaded');
-        console.log('Elements:', { envelopeWrapper, envelope, letter });
-        
         // Click envelope/flap to open
         envelope.addEventListener('click', (e) => {
-            console.log('Envelope clicked', e.target);
-            if (!e.target.closest('.letter') && !isOpen) {
-                console.log('Opening flap');
+            if (!e.target.closest('.letter') && !e.target.closest('.toggle-btn') && !isOpen) {
                 envelopeWrapper.classList.add('flap');
                 isOpen = true;
             }
         });
         
-        // Click letter to pull it out fully
-        letter.addEventListener('click', (e) => {
-            console.log('Letter clicked', { isOpen, isPulled });
+        // Toggle button to pull in/out
+        toggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            if (isOpen && !isPulled) {
-                console.log('Pulling letter out');
-                envelopeWrapper.classList.add('pull');
-                isPulled = true;
-            } else {
-                console.log('Cannot pull - isOpen:', isOpen, 'isPulled:', isPulled);
+            if (isOpen) {
+                if (isPulled) {
+                    envelopeWrapper.classList.remove('pull');
+                    toggleBtn.textContent = 'Pull Out';
+                    isPulled = false;
+                } else {
+                    envelopeWrapper.classList.add('pull');
+                    toggleBtn.textContent = 'Pull In';
+                    isPulled = true;
+                }
             }
         });
     </script>
