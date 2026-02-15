@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day ❤️</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .letter {
+            background: #fff;
+            max-width: 600px;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .heart {
+            color: #e74c3c;
+            font-size: 60px;
+            text-align: center;
+            margin-bottom: 20px;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+        }
+        h1 {
+            color: #e74c3c;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+        .greeting {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .signature {
+            text-align: right;
+            margin-top: 40px;
+            font-style: italic;
+            color: #333;
+        }
+        .decoration {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0.2;
+        }
+        .decoration:nth-child(1) { top: 20px; left: 20px; }
+        .decoration:nth-child(2) { top: 20px; right: 20px; }
+        .decoration:nth-child(3) { bottom: 20px; left: 20px; }
+        .decoration:nth-child(4) { bottom: 20px; right: 20px; }
+    </style>
+</head>
+<body>
+    <div class="letter">
+        <div class="decoration">❤️</div>
+        <div class="decoration">❤️</div>
+        <div class="decoration">❤️</div>
+        <div class="decoration">❤️</div>
+        
+        <div class="heart">❤️</div>
+        <h1>Happy Valentine's Day</h1>
+        
+        <p class="greeting">My Dearest Love,</p>
+        
+        <p>On this Valentine's Day, I want you to know that you are the light that brightens my darkest days and the warmth that fills my heart with joy.</p>
+        
+        <p>Every moment with you feels like a beautiful dream I never want to wake from. Your smile is my favorite sight, your laughter is my favorite sound, and your happiness is my greatest wish.</p>
+        
+        <p>You make ordinary days extraordinary simply by being in them. With you, I've discovered what it truly means to love and be loved.</p>
+        
+        <p>Thank you for being my partner, my best friend, and my everything. I am so grateful for every second we share together.</p>
+        
+        <div class="signature">
+            <p>Forever yours,<br><strong>[Your Name]</strong></p>
+        </div>
+    </div>
+</body>
+</html>
