@@ -6,81 +6,126 @@
     <title>Happy Valentine's Day ❤️</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            z-index: 2;
+            border-top: 200px solid #ffb3ba;
+            border-right: 300px solid transparent;
+            border-left: 300px solid transparent;
+            transform-origin: top;
+            transition: all 0.5s ease-in-out 0.7s;
+        }
+        .envelope::after {
+            content: "";
+            position: absolute;
+            z-index: 2;
+            border-top: 200px solid transparent;
+            border-right: 300px solid #ffcccb;
+            border-bottom: 150px solid #ffcccb;
+            border-left: 300px solid #ffcccb;
+        }
+        .envelope-wrapper.flap > .envelope::before {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+        .envelope-wrapper.flap > .envelope > .letter {
+            transform: translateY(-100px) scale(1.5);
+            transition-delay: 1s;
+        }
+        .envelope-wrapper.flap.pull > .envelope::before {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+        .envelope-wrapper.flap.pull > .envelope > .letter {
+            transform: translateY(-100px) scale(1.5);
+            transition-delay: 0s;
+            z-index: 25;
+            animation: letterPop 0.5s ease-out;
+        }
+        @keyframes letterPop {
+            0% { transform: translateY(-100px) scale(1.5); }
+            50% { transform: translateY(-100px) scale(1.7); }
+            100% { transform: translateY(-100px) scale(1.5); }
+        }
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: float 6s ease-in infinite;
         }
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.1); }
-            50% { transform: scale(1); }
-        }
-        .animate-float { animation: float 3s ease-in-out infinite; }
-        .animate-fadeIn { animation: fadeIn 0.8s ease-out forwards; }
-        .animate-heartbeat { animation: heartbeat 1.5s ease-in-out infinite; }
+        .floating-heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .floating-heart:nth-child(2) { left: 30%; animation-delay: 2s; }
+        .floating-heart:nth-child(3) { left: 50%; animation-delay: 4s; }
+        .floating-heart:nth-child(4) { left: 70%; animation-delay: 1s; }
+        .floating-heart:nth-child(5) { left: 90%; animation-delay: 3s; }
     </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-pink-400 via-red-400 to-rose-600 flex items-center justify-center p-4">
+<body class="min-h-screen bg-gradient-to-br from-red-400 via-red-600 to-red-900 flex items-center justify-center font-serif">
     
-    <!-- Floating Hearts Background -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute top-10 left-10 text-4xl opacity-30 animate-float">💕</div>
-        <div class="absolute top-32 right-20 text-3xl opacity-20 animate-float" style="animation-delay: 1s;">❤️</div>
-        <div class="absolute bottom-20 left-1/4 text-5xl opacity-25 animate-float" style="animation-delay: 2s;">💖</div>
-        <div class="absolute bottom-40 right-1/3 text-3xl opacity-30 animate-float" style="animation-delay: 1.5s;">💗</div>
+    <div class="fixed inset-0 pointer-events-none z-[1]">
+        <div class="floating-heart">❤️</div>
+        <div class="floating-heart">💕</div>
+        <div class="floating-heart">💖</div>
+        <div class="floating-heart">❤️</div>
+        <div class="floating-heart">💕</div>
     </div>
 
-    <!-- Main Card -->
-    <div class="relative z-10 max-w-2xl w-full animate-fadeIn">
-        <!-- Card Container -->
-        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
-            
-            <!-- Header Section -->
-            <div class="bg-gradient-to-r from-pink-500 to-rose-500 p-8 text-center relative overflow-hidden">
-                <div class="absolute inset-0 opacity-20">
-                    <div class="absolute top-0 left-0 w-32 h-32 bg-white rounded-full -translate-x-16 -translate-y-16"></div>
-                    <div class="absolute bottom-0 right-0 w-40 h-40 bg-white rounded-full translate-x-20 translate-y-20"></div>
-                </div>
-                <div class="relative">
-                    <h1 class="text-5xl font-bold text-white mb-2 animate-heartbeat">❤️</h1>
-                    <h2 class="text-3xl font-bold text-white mb-1">Happy Valentine's Day</h2>
-                    <p class="text-pink-100 text-sm">A Letter From My Heart</p>
-                </div>
-            </div>
-
-            <!-- Letter Content -->
-            <div class="p-8 md:p-12 space-y-4 text-gray-700 leading-relaxed">
-                <p class="text-xl font-semibold text-rose-600 italic">My Dearest Love,</p>
-                
-                <p class="text-base">I hope this letter finds you in good health and high spirits. On this special day of Valentine's, I feel compelled to express the depth of my affection and admiration for you.</p>
-                
-                <p class="text-base">It is with great sincerity that I write to inform you of the profound impact you have had upon my life. Your presence brings light to my darkest days, and your companionship fills my heart with immeasurable joy.</p>
-                
-                <p class="text-base">I find myself continually grateful for the moments we share together. Your smile remains my greatest treasure, your laughter my most cherished melody, and your happiness my foremost concern.</p>
-                
-                <p class="text-base">Please accept this humble expression of my devotion. You have transformed the ordinary into the extraordinary, and for that, I am eternally grateful.</p>
-                
-                <div class="pt-6 text-right">
-                    <p class="text-base italic text-gray-600">With deepest affection and warmest regards,</p>
-                    <p class="text-xl font-bold text-rose-600 mt-2">Marvic</p>
-                </div>
-            </div>
-
-            <!-- Footer Decoration -->
-            <div class="bg-gradient-to-r from-pink-50 to-rose-50 p-6 text-center border-t border-pink-100">
-                <div class="flex justify-center gap-3 text-2xl">
-                    <span class="animate-heartbeat">💕</span>
-                    <span class="animate-heartbeat" style="animation-delay: 0.2s;">💖</span>
-                    <span class="animate-heartbeat" style="animation-delay: 0.4s;">💗</span>
-                    <span class="animate-heartbeat" style="animation-delay: 0.6s;">💕</span>
+    <div class="h-screen grid place-items-center">
+        <div class="envelope-wrapper bg-[#ffcccb] shadow-[0_0_40px_rgba(0,0,0,0.3)] w-[600px] h-[350px] relative overflow-visible">
+            <div class="envelope relative w-[600px] h-[350px] cursor-pointer">
+                <div class="letter absolute left-[18%] bottom-0 w-[65%] h-[82%] bg-white flex items-end justify-center transition-all duration-1000 ease-in-out shadow-[0_0_5px_rgba(0,0,0,0.2)] p-[18px_12px_60px_12px] overflow-y-auto cursor-default">
+                    <button class="toggle-btn absolute top-[5px] right-[5px] bg-red-500 text-white border-none px-[10px] py-[6px] rounded-md cursor-pointer text-[9px] shadow-[0_2px_5px_rgba(0,0,0,0.2)] transition-all duration-300 hover:bg-red-600 hover:scale-105" id="toggleBtn">Pull Out</button>
+                    <div class="text font-['Brush_Script_MT',cursive] text-gray-700 text-left text-[10px] leading-relaxed w-full mt-5">
+                        <p class="italic mb-2 font-bold">My Dearest Love,</p>
+                        <p class="mb-2">I hope this letter finds you in good health and high spirits. On this special day of Valentine's, I feel compelled to express the depth of my affection and admiration for you.</p>
+                        <p class="mb-2">It is with great sincerity that I write to inform you of the profound impact you have had upon my life. Your presence brings light to my darkest days, and your companionship fills my heart with immeasurable joy.</p>
+                        <p class="mb-2">I find myself continually grateful for the moments we share together. Your smile remains my greatest treasure, your laughter my most cherished melody, and your happiness my foremost concern.</p>
+                        <p class="mb-2">Please accept this humble expression of my devotion. You have transformed the ordinary into the extraordinary, and for that, I am eternally grateful.</p>
+                        <div class="text-right italic mt-3 mb-5">
+                            <p>With deepest affection and warmest regards,<br><strong>Marvic</strong></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <script>
+        const envelopeWrapper = document.querySelector('.envelope-wrapper');
+        const envelope = document.querySelector('.envelope');
+        const toggleBtn = document.getElementById('toggleBtn');
+        let isOpen = false;
+        let isPulled = false;
+        
+        envelope.addEventListener('click', (e) => {
+            if (!e.target.closest('.letter') && !e.target.closest('.toggle-btn') && !isOpen) {
+                envelopeWrapper.classList.add('flap');
+                isOpen = true;
+            }
+        });
+        
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (isOpen) {
+                if (isPulled) {
+                    envelopeWrapper.classList.remove('pull');
+                    toggleBtn.textContent = 'Pull Out';
+                    isPulled = false;
+                } else {
+                    envelopeWrapper.classList.add('pull');
+                    toggleBtn.textContent = 'Pull In';
+                    isPulled = true;
+                }
+            }
+        });
+    </script>
 </body>
 </html>
