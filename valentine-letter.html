@@ -27,6 +27,7 @@
             position: relative;
             width: 500px;
             height: 300px;
+            cursor: pointer;
         }
         .envelope::before {
             content: "";
@@ -38,7 +39,6 @@
             border-left: 250px solid transparent;
             transform-origin: top;
             transition: all 0.5s ease-in-out 0.7s;
-            cursor: pointer;
         }
         .envelope::after {
             content: "";
@@ -178,21 +178,26 @@
 
     <script>
         const envelopeWrapper = document.querySelector('.envelope-wrapper');
-        const envelopeFlap = document.querySelector('.envelope::before');
+        const envelope = document.querySelector('.envelope');
         const letter = document.querySelector('.letter');
+        let isOpen = false;
+        let isPulled = false;
         
-        // Click flap to open envelope
-        envelopeWrapper.addEventListener('click', (e) => {
-            // Only toggle flap if clicking on the envelope area (not the letter)
-            if (!e.target.closest('.letter')) {
-                envelopeWrapper.classList.toggle('flap');
+        // Click envelope to open flap
+        envelope.addEventListener('click', (e) => {
+            if (!e.target.closest('.letter') && !isOpen) {
+                envelopeWrapper.classList.add('flap');
+                isOpen = true;
             }
         });
         
-        // Click letter to pull it out
+        // Click letter to pull it out (only works after flap is open)
         letter.addEventListener('click', (e) => {
             e.stopPropagation();
-            envelopeWrapper.classList.add('pull');
+            if (isOpen && !isPulled) {
+                envelopeWrapper.classList.add('pull');
+                isPulled = true;
+            }
         });
     </script>
 </body>
