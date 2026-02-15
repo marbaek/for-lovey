@@ -8,7 +8,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #ff6b6b 0%, #c92a2a 50%, #8b0000 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -32,16 +32,16 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: #f4e4d7;
-            border: 3px solid #d4a574;
+            background: #ffcccb;
+            border: 3px solid #ff6b6b;
             clip-path: polygon(0 0, 50% 60%, 100% 0, 100% 100%, 0 100%);
         }
         .envelope-flap {
             position: absolute;
             width: 100%;
             height: 60%;
-            background: #f4e4d7;
-            border: 3px solid #d4a574;
+            background: #ffb3ba;
+            border: 3px solid #ff6b6b;
             border-bottom: none;
             clip-path: polygon(0 0, 50% 100%, 100% 0);
             transform-origin: top center;
@@ -56,10 +56,11 @@
             width: 90%;
             height: 500px;
             background: #fff;
+            border: 2px solid #ff6b6b;
             left: 5%;
             top: 100%;
             padding: 40px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 40px rgba(255,0,0,0.3);
             transition: top 1.5s ease;
             overflow-y: auto;
             z-index: 5;
@@ -69,30 +70,88 @@
         }
         .bouquet {
             position: absolute;
-            bottom: -50px;
+            bottom: -80px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 40px;
             opacity: 0;
             transition: all 1.5s ease;
             z-index: 15;
         }
         .container.open .bouquet {
-            bottom: 60%;
+            bottom: 55%;
             opacity: 1;
         }
         .flower {
             display: inline-block;
+            font-size: 50px;
             animation: sway 2s ease-in-out infinite;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
         }
-        .flower:nth-child(1) { animation-delay: 0s; }
-        .flower:nth-child(2) { animation-delay: 0.2s; }
-        .flower:nth-child(3) { animation-delay: 0.4s; }
-        .flower:nth-child(4) { animation-delay: 0.6s; }
-        .flower:nth-child(5) { animation-delay: 0.8s; }
+        .flower:nth-child(1) { animation-delay: 0s; transform: rotate(-15deg); }
+        .flower:nth-child(2) { animation-delay: 0.2s; transform: rotate(-8deg); }
+        .flower:nth-child(3) { animation-delay: 0.4s; transform: rotate(0deg); }
+        .flower:nth-child(4) { animation-delay: 0.6s; transform: rotate(8deg); }
+        .flower:nth-child(5) { animation-delay: 0.8s; transform: rotate(15deg); }
         @keyframes sway {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
+            0%, 100% { transform: rotate(var(--rotate, 0deg)) translateY(0); }
+            50% { transform: rotate(var(--rotate, 0deg)) translateY(-5px); }
+        }
+        .stems {
+            position: absolute;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px;
+            height: 100px;
+            opacity: 0;
+            transition: all 1.5s ease;
+            z-index: 14;
+        }
+        .container.open .stems {
+            bottom: 45%;
+            opacity: 1;
+        }
+        .stem {
+            position: absolute;
+            width: 4px;
+            height: 80px;
+            background: linear-gradient(to bottom, #2d5016, #4a7c2c);
+            border-radius: 2px;
+        }
+        .stem:nth-child(1) { left: 30px; transform: rotate(-10deg); }
+        .stem:nth-child(2) { left: 70px; transform: rotate(-5deg); }
+        .stem:nth-child(3) { left: 110px; }
+        .stem:nth-child(4) { left: 150px; transform: rotate(5deg); }
+        .stem:nth-child(5) { left: 190px; transform: rotate(10deg); }
+        .ribbon {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 30px;
+            background: #ff1744;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .ribbon::before,
+        .ribbon::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        .ribbon::before {
+            left: 0;
+            border-width: 15px 0 0 25px;
+            border-color: transparent transparent transparent #c41230;
+        }
+        .ribbon::after {
+            right: 0;
+            border-width: 0 0 15px 25px;
+            border-color: transparent transparent #c41230 transparent;
         }
         .heart {
             color: #e74c3c;
@@ -136,6 +195,7 @@
             transform: translateX(-50%);
             color: #fff;
             font-size: 18px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             animation: bounce 2s infinite;
             z-index: 30;
         }
@@ -186,12 +246,20 @@
     <div class="container" onclick="this.classList.toggle('open')">
         <div class="click-hint">✨ Click to Open ✨</div>
         
+        <div class="stems">
+            <div class="stem"></div>
+            <div class="stem"></div>
+            <div class="stem"></div>
+            <div class="stem"></div>
+            <div class="stem"></div>
+            <div class="ribbon"></div>
+        </div>
         <div class="bouquet">
             <span class="flower">🌹</span>
-            <span class="flower">🌺</span>
-            <span class="flower">🌷</span>
-            <span class="flower">🌸</span>
-            <span class="flower">🌻</span>
+            <span class="flower">🌹</span>
+            <span class="flower">🌹</span>
+            <span class="flower">🌹</span>
+            <span class="flower">🌹</span>
         </div>
         
         <div class="envelope">
